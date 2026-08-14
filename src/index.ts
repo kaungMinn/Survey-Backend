@@ -2,9 +2,10 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import { surveyController } from './controllers/survey-controller.js';
+import { corsOption } from './cors/cors-option.js';
 
 const app = express();
-app.use(cors());
+app.use(cors(corsOption));
 app.use(express.json());
 
 app.post('/api/v1/surveys', surveyController.create);
