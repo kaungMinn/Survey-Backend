@@ -1,3 +1,7 @@
+## Survey Api
+
+> **Live App:** [https://survey.kaungminkhant.site](https://survey.kaungminkhant.site)
+
 ## Getting Started
 
 ### Prerequisites
@@ -19,17 +23,20 @@ https://github.com/kaungMinn/Survey-Backend.git
 cd Survey-Backend
 
 3
-# Create .env file by using .env.example as a reference
+# Create a mysql database
 
 4
+# Create .env file by using .env.example as a reference with the database you created
+
+5
 # Install dependencies
 npm install
 
-5
+6
 # Database push
 npx drizzle-kit push
 
-6
+7
 # Start development server
 npm run dev
 ```
