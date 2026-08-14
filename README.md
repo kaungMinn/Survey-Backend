@@ -23,14 +23,14 @@ https://github.com/kaungMinn/Survey-Backend.git
 cd Survey-Backend
 
 3
-# Create a mysql database
-
-4
-# Create .env file by using .env.example as a reference with the database you created
-
-5
 # Install dependencies
 npm install
+
+4
+# Create a mysql database in your terminal or sql editor
+
+5
+# Create .env file by using .env.example as a reference with the database you created
 
 6
 # Database push
