@@ -35,7 +35,7 @@ npm run dev
 ```
 
 ### Create Store Procedure In DB
-```JSON
+```SQL
 USE table-you-created;
 
 
