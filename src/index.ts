@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
-import { surveyController } from './controllers/survey-controller';
+import { surveyController } from './controllers/survey-controller.js';
 
 const app = express();
 app.use(cors());

@@ -1,8 +1,9 @@
-import { Request, Response } from "express";
-import { db } from "../db";
-import { surveysTable } from "../db/schema";
+
+import { db } from "../db/index.js";
+import { surveyZodSchema } from "../zod/survey-zod-schema.js";
+import { surveysTable } from "../db/schema.js";
 import { eq } from "drizzle-orm";
-import { surveyZodSchema } from "../zod/survey-zod-schema";
+import type { Request, Response } from "express";
 
 function generateToken(): string {
   return Math.floor(100000 + Math.random() * 900000).toString();
