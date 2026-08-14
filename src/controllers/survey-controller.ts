@@ -16,10 +16,9 @@ async function create (req: Request, res: Response){
         return res.status(400).json({ success:false, message: 'All fields are mandatory' });
     }
 
-    const { name, phone_number, company_name, designation } = validation.data;
+     const { name, phone_number, company_name, designation } = validation.data;
    
-    let token = generateToken();
-     // Simple check for uniqueness
+     let token = generateToken();
      const existing = await db.select().from(surveysTable).where(eq(surveysTable.token, token));
      
      if (existing.length > 0) {
@@ -34,10 +33,8 @@ async function create (req: Request, res: Response){
        token 
      });
    
-   // Get the auto-incremented ID from the insert result
    const insertId = result.insertId;
    
-   // Fetch the newly created record to return to the client
    const [newRecord] = await db.select()
      .from(surveysTable)
      .where(eq(surveysTable.id, insertId));
