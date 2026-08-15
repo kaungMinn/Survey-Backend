@@ -41,7 +41,7 @@ npx drizzle-kit push
 # Create Store Procedure In DB Table named surveys as below ( Run this in sql editor )
 
 
-USE table-you-created;
+USE database-you-created;
 DELIMITER //
 
 CREATE PROCEDURE GetSurveyReport()
