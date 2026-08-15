@@ -127,9 +127,9 @@ Base URL: `http://localhost:3000/api/v1`
 * **Description:** Validates incoming payload, checks for token collisions, inserts a new survey record into the database, and returns the newly created record.
 
 #### Request Headers
-| Header | Type | Description |
+| Key | Value | Description |
 | :--- | :--- | :--- |
-| `Content-Type` | String | Must be `application/json` |
+| `Content-Type` | `application/json` | Must be `application/json` |
 
 #### Request Body (`application/json`)
 | Field | Type | Required | Description |
@@ -156,9 +156,9 @@ Base URL: `http://localhost:3000/api/v1`
 * **Description:** Executes a MySQL stored procedure to fetch all submitted survey records ordered by creation date in descending order.
 
 #### Request Headers
-| Header | Type | Description |
+| Key | Value | Description |
 | :--- | :--- | :--- |
-| `Content-Type` | String | `application/json` |
+| `Content-Type` | `application/json`  | `application/json` |
 
 #### Response Scenarios
 
