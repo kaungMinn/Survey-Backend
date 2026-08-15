@@ -34,7 +34,7 @@ npm install
 
 
 6
-# Database push
+# Database push (This will create a table named surveys)
 npx drizzle-kit push
 
 7
