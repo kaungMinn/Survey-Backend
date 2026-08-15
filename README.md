@@ -30,7 +30,15 @@ npm install
 # Create a mysql database in your terminal or sql editor
 
 5
-# Create Store Procedure In DB as below ( Run this in sql editor )
+# Create .env file by using .env.example as a reference with the database you created
+
+
+6
+# Database push
+npx drizzle-kit push
+
+7
+# Create Store Procedure In DB Table named surveys as below ( Run this in sql editor )
 
 
 USE table-you-created;
@@ -51,13 +59,6 @@ BEGIN
 END //
 
 DELIMITER ;
-
-6
-# Create .env file by using .env.example as a reference with the database you created
-
-7
-# Database push
-npx drizzle-kit push
 
 8
 # Start development server
