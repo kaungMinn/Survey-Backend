@@ -38,10 +38,11 @@ npm install
 npx drizzle-kit push
 
 7
-# Create Store Procedure In DB Table named surveys as below ( Run this in sql editor )
+# Create Store Procedure In DB Table of named surveys as below ( Run this in sql editor )
 
 
 USE database-you-created;
+
 DELIMITER //
 
 CREATE PROCEDURE GetSurveyReport()
