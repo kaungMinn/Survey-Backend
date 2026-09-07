@@ -1,12 +1,8 @@
 import 'dotenv/config';
-import { TelegramClient, sessions } from 'telegram';
-import { envConfig } from '../utils/env-config.js';
 import { StatusCodes } from 'http-status-codes';
 import fs from 'node:fs/promises';
 import type { NextFunction, Request, Response } from 'express';
 import { telegramServices } from '../services/telegram.services.js';
-
-const stringSession = new sessions.StringSession(envConfig.telegramSession || "");
 
 async function scrapeIds(req: Request, res: Response, next: NextFunction) {
 
