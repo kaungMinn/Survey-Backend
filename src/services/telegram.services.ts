@@ -1,5 +1,7 @@
-import { sessions, TelegramClient } from "telegram";
+import { Api, sessions, TelegramClient } from "telegram";
 import { envConfig } from "../utils/env-config.js";
+import type { Message } from "telegraf/types";
+import type { TotalList } from "telegram/Helpers.js";
 
 async function login() {
     const stringSession = new sessions.StringSession(envConfig.telegramSession || "");
@@ -27,15 +29,25 @@ async function getAllMessages(client: TelegramClient) {
         reverse: true
     });
 
-    return messages as any;
+    return messages as Api.Message[];
 }
+
+async function getAllMessagesFromGamesMyanmar(client: TelegramClient) {
+    const messages = await client.getMessages(envConfig.privateChannelId, {
+        reverse: true
+    });
+
+    return messages as Api.Message[];
+}
+
+
 
 async function getAPKDatas(client: TelegramClient) {
     const messages = await getAllMessages(client);
 
     let apkDatas = [];
 
-    for (const message of messages) {
+    for (const message of messages as any) {
         if (!message.media || !message.media.document) continue;
         const doc = message.media.document;
 
@@ -69,4 +81,4 @@ async function makeDataIntoUrl(client: TelegramClient) {
     return urls;
 }
 
-export const telegramServices = { login, getAllMessages, getAPKDatas, makeDataIntoUrl };
+export const telegramServices = { login, getAllMessages, getAllMessagesFromGamesMyanmar, getAPKDatas, makeDataIntoUrl };

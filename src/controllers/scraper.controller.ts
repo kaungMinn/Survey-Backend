@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { StatusCodes } from 'http-status-codes';
 import fs from 'node:fs/promises';
-import type { NextFunction, Request, Response } from 'express';
+import { response, type NextFunction, type Request, type Response } from 'express';
 import { telegramServices } from '../services/telegram.services.js';
 
 async function scrapeIds(req: Request, res: Response, next: NextFunction) {
@@ -34,5 +34,61 @@ async function scrapeIds(req: Request, res: Response, next: NextFunction) {
   }
 }
 
+async function scrapeMessages(req: Request, res: Response, next: NextFunction) {
+  try {
+    const client = await telegramServices.login();
 
-export const scraperController = { scrapeIds };
+    const messages = await telegramServices.getAllMessages(client);
+
+    return res.status(StatusCodes.ACCEPTED).json({
+      success: true,
+      message: "Successfully get messages",
+      data: messages
+    });
+
+  } catch (error) {
+    console.log("Error while scrapping messages", error);
+    next(error);
+  }
+}
+
+async function scrapeMessagesFromGamesMyanmar(req: Request, res: Response, next: NextFunction) {
+  try {
+    const client = await telegramServices.login();
+    const gamesMyanmarMessages = await telegramServices.getAllMessagesFromGamesMyanmar(client);
+
+    // Map through messages to extract clean lookup identifiers alongside your text/url data
+    const mappedData = gamesMyanmarMessages.map((msg: any) => {
+      const document = msg.media?.document;
+      const fileName = document?.attributes?.find(
+        (attr: any) => attr.className === "DocumentAttributeFilename"
+      )?.fileName || null;
+
+      const fileSize = document?.size ? document.size.toString() : null;
+
+      return {
+        messageId: msg.id,
+        text: msg.message, // Caption
+        fileName: fileName,
+        fileSize: fileSize,
+        // Composite unique key for your DB lookup
+        uniqueKey: fileName && fileSize ? `${fileName}_${fileSize}` : null,
+      };
+    });
+
+    return res.status(StatusCodes.ACCEPTED).json({
+      success: true,
+      message: "Successfully extracted messages with unique identifiers",
+      data: mappedData,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+
+export const scraperController = {
+  scrapeIds,
+  scrapeMessages,
+  scrapeMessagesFromGamesMyanmar
+};
